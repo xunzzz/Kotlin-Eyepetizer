@@ -38,6 +38,9 @@ class SearchAdapter(context: Context, list: ArrayList<String>) : RecyclerView.Ad
         holder?.tv_tilte?.text = list?.get(position)
         val params = holder?.tv_tilte?.layoutParams
         if (params is FlexboxLayoutManager.LayoutParams){
+            (holder?.tv_tilte?.layoutParams as FlexboxLayoutManager.LayoutParams).flexGrow = 1.0f
+        }
+        holder?.itemView?.setOnClickListener {
 
         }
 

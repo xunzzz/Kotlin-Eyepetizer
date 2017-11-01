@@ -7,6 +7,7 @@ import android.inputmethodservice.Keyboard
 import android.os.Bundle
 import android.support.v7.widget.DefaultItemAnimator
 import android.view.*
+import com.google.android.flexbox.AlignContent
 import com.google.android.flexbox.FlexDirection
 import com.google.android.flexbox.FlexWrap
 import com.google.android.flexbox.FlexboxLayoutManager
@@ -21,9 +22,8 @@ import kotlinx.android.synthetic.main.fragment_search.*
 
 const val SEARCH_TAG = "SearchFragment"
 
-class SearchFragment : DialogFragment(), View.OnClickListener, CircularRevealAnim.AnimListener, DialogInterface.OnKeyListener {
-
-
+class SearchFragment : DialogFragment(), View.OnClickListener,
+        CircularRevealAnim.AnimListener, DialogInterface.OnKeyListener, ViewTreeObserver.OnPreDrawListener {
 
     var data : MutableList<String> = arrayListOf("脱口秀","城会玩","666","笑cry","漫威",
             "清新","匠心","VR","心理学","舞蹈","品牌广告","粉丝自制","电影相关","萝莉","魔性"
@@ -72,6 +72,7 @@ class SearchFragment : DialogFragment(), View.OnClickListener, CircularRevealAni
         mCircularRevealAnim = CircularRevealAnim()
         mCircularRevealAnim.setAnimListener(this)
         dialog.setOnKeyListener(this)
+        iv_search_search.viewTreeObserver.addOnPreDrawListener(this)
         iv_search_search.setOnClickListener(this)
         iv_search_back.setOnClickListener(this)
 
@@ -92,7 +93,11 @@ class SearchFragment : DialogFragment(), View.OnClickListener, CircularRevealAni
         recyclerView.adapter = mAdapter
     }
 
-
+    override fun onPreDraw(): Boolean {
+        iv_search_search.viewTreeObserver.removeOnPreDrawListener(this)
+        mCircularRevealAnim.show(iv_search_search, mRootView)
+        return true
+    }
     override fun onHideAnimationEnd() {
         et_search_keyword.setText("")
         dismiss()
