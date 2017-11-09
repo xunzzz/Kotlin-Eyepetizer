@@ -2,18 +2,20 @@ package com.zx.eyepetizer.ui.search
 
 import android.app.DialogFragment
 import android.content.DialogInterface
+import android.content.Intent
 import android.graphics.Typeface
-import android.inputmethodservice.Keyboard
 import android.os.Bundle
 import android.support.v7.widget.DefaultItemAnimator
+import android.text.TextUtils
 import android.view.*
-import com.google.android.flexbox.AlignContent
 import com.google.android.flexbox.FlexDirection
 import com.google.android.flexbox.FlexWrap
 import com.google.android.flexbox.FlexboxLayoutManager
 import com.zx.eyepetizer.R
+import com.zx.eyepetizer.ui.searchresult.ResultActivity
 import com.zx.eyepetizer.utils.KeyBoardUtils
 import kotlinx.android.synthetic.main.fragment_search.*
+import org.jetbrains.anko.toast
 
 
 /**
@@ -138,7 +140,16 @@ class SearchFragment : DialogFragment(), View.OnClickListener,
     }
 
     private fun search() {
-
+        val searchKey = et_search_keyword.text.toString()
+        if (TextUtils.isEmpty(searchKey.trim({it <= ' '}))){
+            toast("请输入关键字")
+        }else{
+            hideAnim()
+//            val keyWord = et_search_keyword.text.toString().trim()
+//            var intent : Intent = Intent(activity, ResultActivity::class.java)
+//            intent.putExtra("keyWord",keyWord)
+//            activity?.startActivity(intent)
+        }
 
     }
 

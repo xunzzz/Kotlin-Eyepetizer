@@ -1,6 +1,7 @@
 package com.zx.eyepetizer.ui.search
 
 import android.content.Context
+import android.content.Intent
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -8,7 +9,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import com.google.android.flexbox.FlexboxLayoutManager
 import com.zx.eyepetizer.R
-import org.jetbrains.anko.find
+import com.zx.eyepetizer.ui.searchresult.ResultActivity
 
 /**
  * Created by admin on 2017/10/31.
@@ -41,7 +42,11 @@ class SearchAdapter(context: Context, list: ArrayList<String>) : RecyclerView.Ad
             (holder?.tv_tilte?.layoutParams as FlexboxLayoutManager.LayoutParams).flexGrow = 1.0f
         }
         holder?.itemView?.setOnClickListener {
-
+//            val keyWord = list?.get(position)
+//            val intent = Intent(context, ResultActivity::class.java)
+//            intent.putExtra("keyWord", keyWord)
+//            context?.startActivity(intent)
+            mDialogListener?.onDismiss()
         }
 
 

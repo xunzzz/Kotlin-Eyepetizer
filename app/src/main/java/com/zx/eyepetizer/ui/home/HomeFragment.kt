@@ -5,6 +5,7 @@ import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import com.zx.eyepetizer.R
 import com.zx.eyepetizer.base.BaseFragment
+import com.zx.eyepetizer.base.tabsId
 import com.zx.eyepetizer.entity.HomeBean
 import com.zx.eyepetizer.entity.HomeBean.IssueListBean.ItemListBean
 import kotlinx.android.synthetic.main.fragment_home.*
@@ -15,7 +16,7 @@ import java.util.regex.Pattern
 /**
  * Created by admin on 2017/10/30.
  */
-class HomeFragment : BaseFragment(), HomeContract.View, SwipeRefreshLayout.OnRefreshListener {
+class HomeFragment : BaseFragment(tabsId[0]), HomeContract.View, SwipeRefreshLayout.OnRefreshListener {
     var mPresenter: HomeContract.Presenter? = null
     var mAdapter: HomeAdatper? = null
     var mList = ArrayList<ItemListBean>()

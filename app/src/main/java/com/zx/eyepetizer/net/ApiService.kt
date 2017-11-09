@@ -20,4 +20,6 @@ interface ApiService {
     //获取首页第一页之后的数据  ?date=1499043600000&num=2
     @GET("v2/feed")
     fun getHomeMoreData(@Query("date") date: String, @Query("num") num: String): Observable<HomeBean>
+
+
 }
